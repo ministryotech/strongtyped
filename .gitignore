@@ -1,1 +1,4 @@
 *.nupkg
+Ministry.StrongTyped/bin/
+*/obj/
+*.suo
