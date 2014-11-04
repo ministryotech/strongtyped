@@ -12,6 +12,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -296,10 +297,14 @@ namespace Ministry.StrongTyped
         /// <param name="col">The collection.</param>
         /// <param name="delimiter">The delimiter.</param>
         /// <returns>A delimited string representation of the collection.</returns>
-        public static string Delimit(this IEnumerable<string> col, string delimiter)
+        public static string Delimit(this IEnumerable<string> col, string delimiter = ", ")
         {
+            // ReSharper disable once PossibleMultipleEnumeration
+            CheckParameter.IsNotNull(col, "col");
+
             var builder = new StringBuilder();
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (var item in col)
             {
                 builder.AppendIfNotEmpty(delimiter);
@@ -319,15 +324,52 @@ namespace Ministry.StrongTyped
         /// <returns>
         /// A delimited string representation of the collection.
         /// </returns>
-        public static string Delimit<T>(this IEnumerable<KeyValuePair<string, T>> col, string delimiter, string keyValueSeparator)
+        public static string Delimit<T>(this IEnumerable<KeyValuePair<string, T>> col, string delimiter = ", ", string keyValueSeparator = ": ")
         {
+            // ReSharper disable once PossibleMultipleEnumeration
+            CheckParameter.IsNotNull(col, "col");
+
             var builder = new StringBuilder();
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (var item in col)
             {
                 builder.AppendIfNotEmpty(delimiter);
                 builder.Append(item.Key);
                 builder.Append(keyValueSeparator);
+                builder.Append(item.Value);
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Converts a hashtable of strings to a delimited list.
+        /// </summary>
+        /// <param name="col">The strings to delimit.</param>
+        /// <param name="delimiter">The delimiter to split the strings by.</param>
+        /// <param name="excludeKeys">A flag to indicate if keys should be excluded.</param>
+        /// <param name="keyValueSeparator">The key value separator.</param>
+        /// <returns>
+        /// The delimited string.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">The Hashtable passed in is null.</exception>
+        public static string Delimit(this IDictionary col, string delimiter = ", ", bool excludeKeys = false, string keyValueSeparator = ": ")
+        {
+            // ReSharper disable once PossibleMultipleEnumeration
+            CheckParameter.IsNotNull(col, "col");
+
+            var builder = new StringBuilder();
+
+            // ReSharper disable once PossibleMultipleEnumeration
+            foreach (DictionaryEntry item in col)
+            {
+                builder.AppendIfNotEmpty(delimiter);
+                if (!excludeKeys)
+                {
+                    builder.Append(item.Key);
+                    builder.Append(keyValueSeparator);
+                }
                 builder.Append(item.Value);
             }
 
@@ -341,8 +383,12 @@ namespace Ministry.StrongTyped
         /// <returns>A listed string representation of the collection.</returns>
         public static string List(this IEnumerable<string> col)
         {
+            // ReSharper disable once PossibleMultipleEnumeration
+            CheckParameter.IsNotNull(col, "col");
+
             var builder = new StringBuilder();
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (var item in col)
             {
                 builder.AppendLineIfNotEmpty();
@@ -361,15 +407,51 @@ namespace Ministry.StrongTyped
         /// <returns>
         /// A listed string representation of the collection.
         /// </returns>
-        public static string List<T>(this IEnumerable<KeyValuePair<string, T>> col, string keyValueSeparator)
+        public static string List<T>(this IEnumerable<KeyValuePair<string, T>> col, string keyValueSeparator = ": ")
         {
+            // ReSharper disable once PossibleMultipleEnumeration
+            CheckParameter.IsNotNull(col, "col");
+
             var builder = new StringBuilder();
 
+            // ReSharper disable once PossibleMultipleEnumeration
             foreach (var item in col)
             {
                 builder.AppendLineIfNotEmpty();
                 builder.Append(item.Key);
                 builder.Append(keyValueSeparator);
+                builder.Append(item.Value);
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Converts a hashtable of strings to a delimited list.
+        /// </summary>
+        /// <param name="col">The strings to delimit.</param>
+        /// <param name="excludeKeys">A flag to indicate if keys should be excluded.</param>
+        /// <param name="keyValueSeparator">The key value separator.</param>
+        /// <returns>
+        /// The delimited string.
+        /// </returns>
+        /// <exception cref="System.ArgumentNullException">The Hashtable passed in is null.</exception>
+        public static string List(this IDictionary col, bool excludeKeys = false, string keyValueSeparator = ": ")
+        {
+            // ReSharper disable once PossibleMultipleEnumeration
+            CheckParameter.IsNotNull(col, "col");
+
+            var builder = new StringBuilder();
+
+            // ReSharper disable once PossibleMultipleEnumeration
+            foreach (DictionaryEntry item in col)
+            {
+                builder.AppendLineIfNotEmpty();
+                if (!excludeKeys)
+                {
+                    builder.Append(item.Key);
+                    builder.Append(keyValueSeparator);
+                }
                 builder.Append(item.Value);
             }
 

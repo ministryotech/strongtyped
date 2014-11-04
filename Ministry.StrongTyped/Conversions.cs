@@ -12,10 +12,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
-using System.Collections;
 using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace Ministry.StrongTyped
 {
@@ -164,53 +161,6 @@ namespace Ministry.StrongTyped
         }
 
         #endregion
-
-        /// <summary>
-        /// Converts a generic list of any type to a delimited list of string values.
-        /// </summary>
-        /// <param name="value">The strings to delimit.</param>
-        /// <param name="delimiter">The delimiter to split the strings by.</param>
-        /// <returns>The delimited string.</returns>
-        /// <exception cref="System.ArgumentNullException">The list passed in is null.</exception>
-        public static string ToDelimitedString(this IList value, string delimiter = ", ")
-        {
-            if (value == null) throw new ArgumentNullException("value");
-            if (delimiter == null) throw new ArgumentNullException("delimiter");
-
-            var builder = new StringBuilder();
-
-            foreach (var item in value)
-            {
-                if (item.ToString().IsNullOrEmpty()) continue;
-                builder.Append(item);
-                builder.Append(delimiter);
-            }
-
-            return (builder.Length > 0 ? builder.ToString().RemoveFromEnd(delimiter.Length) : String.Empty);
-        }
-
-        /// <summary>
-        /// Converts a hashtable of strings to a delimited list.
-        /// </summary>
-        /// <param name="value">The strings to delimit.</param>
-        /// <param name="delimiter">The delimiter to split the strings by.</param>
-        /// <param name="excludeKeys">A flag to indicate if keys should be excluded.</param>
-        /// <returns>
-        /// The delimited string.
-        /// </returns>
-        /// <exception cref="System.ArgumentNullException">The Hashtable passed in is null.</exception>
-        public static string ToDelimitedString(this IDictionary value, string delimiter = ", ", bool excludeKeys = false)
-        {
-            if (value == null) throw new ArgumentNullException("value");
-            if (delimiter == null) throw new ArgumentNullException("delimiter");
-
-            var tempList = (from DictionaryEntry entry 
-                            in value 
-                            select (excludeKeys ? String.Empty : entry.Key + ":") + entry.Value).ToList();
-
-            tempList.Sort();
-            return tempList.ToDelimitedString(delimiter);
-        }
 
     }
 }
