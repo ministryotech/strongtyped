@@ -50,6 +50,14 @@ And to collections...
 * **Delimit** - Converts an IEnumerable of strings or KeyValuePairs into a single delimited string.
 * **List** - Converts an IEnumerable of strings or KeyValuePairs into a single, line terminator delimited list.
 
+## Conversions ##
+A selection of extension methods to provide easy conversion between some of the primary data types.
+
+* **Boolean.ToInt32 - Converts a boolean value to an integer with optional parameters to specify the translated true and false values.
+* **Boolean.ToString - Takes a defined type of conversion to convert a bool value into either True / False, Yes / No or Y / N strings.
+* **Int32.ToBoolean - Converts an integer greater than 0 into true.
+* **String.ToBoolean - Converts any valid string to a representative boolean value. The conversion is case insensitive and will take either 1 / 0 / -1, Yes / No, True / False or Y / N as valid input strings.
+
 ## WebSession ##
 ### Using Session State in your Application ###
 Use a WebSessionBase class. Recommended usage is to inherit from this class in your application and use that class to access session state. You can then swap out your session wrapper with any other implementation of IWebSession to enable testing of components that previously would have been extremely hard to test because of a dependency on session state.
