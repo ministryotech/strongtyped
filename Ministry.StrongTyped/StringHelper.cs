@@ -12,6 +12,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -78,6 +79,66 @@ namespace Ministry.StrongTyped
             if (appendValue == null) throw new ArgumentNullException("appendValue");
 
             if (value.Length > 0) value.Append(appendValue);
+            return value;
+        }
+
+        /// <summary>
+        /// Appends a line terminator after a value to the StringBuilder if it is currently empty.
+        /// </summary>
+        /// <param name="value">The stringbuilder to append to.</param>
+        /// <param name="appendValue">The value to append.</param>
+        /// <returns>The completed builder.</returns>
+        /// <exception cref="System.ArgumentNullException">Either the StringBuilder or value to append are null.</exception>
+        public static StringBuilder AppendLineIfEmpty(this StringBuilder value, string appendValue)
+        {
+            if (value == null) throw new ArgumentNullException("value");
+            if (appendValue == null) throw new ArgumentNullException("appendValue");
+
+            if (value.Length == 0) value.AppendLine(appendValue);
+            return value;
+        }
+
+        /// <summary>
+        /// Appends line terminator after a value to the StringBuilder if it is not currently empty.
+        /// </summary>
+        /// <param name="value">The stringbuilder to append to.</param>
+        /// <param name="appendValue">The value to append.</param>
+        /// <returns>The completed builder.</returns>
+        /// <exception cref="System.ArgumentNullException">Either the StringBuilder or value to append are null.</exception>
+        public static StringBuilder AppendLineIfNotEmpty(this StringBuilder value, string appendValue)
+        {
+            if (value == null) throw new ArgumentNullException("value");
+            if (appendValue == null) throw new ArgumentNullException("appendValue");
+
+            if (value.Length > 0) value.AppendLine(appendValue);
+            return value;
+        }
+
+        /// <summary>
+        /// Appends a line terminator to the StringBuilder if it is currently empty.
+        /// </summary>
+        /// <param name="value">The stringbuilder to append to.</param>
+        /// <returns>The completed builder.</returns>
+        /// <exception cref="System.ArgumentNullException">Either the StringBuilder or value to append are null.</exception>
+        public static StringBuilder AppendLineIfEmpty(this StringBuilder value)
+        {
+            if (value == null) throw new ArgumentNullException("value");
+
+            if (value.Length == 0) value.AppendLine();
+            return value;
+        }
+
+        /// <summary>
+        /// Appends line terminator to the StringBuilder if it is not currently empty.
+        /// </summary>
+        /// <param name="value">The stringbuilder to append to.</param>
+        /// <returns>The completed builder.</returns>
+        /// <exception cref="System.ArgumentNullException">Either the StringBuilder or value to append are null.</exception>
+        public static StringBuilder AppendLineIfNotEmpty(this StringBuilder value)
+        {
+            if (value == null) throw new ArgumentNullException("value");
+
+            if (value.Length > 0) value.AppendLine();
             return value;
         }
 
@@ -227,6 +288,92 @@ namespace Ministry.StrongTyped
 
             var tmp = value.Replace(delimiter, delim.ToString(CultureInfo.InvariantCulture));
             return tmp.Split(delim);
+        }
+
+        /// <summary>
+        /// Delimits the specified collection.
+        /// </summary>
+        /// <param name="col">The collection.</param>
+        /// <param name="delimiter">The delimiter.</param>
+        /// <returns>A delimited string representation of the collection.</returns>
+        public static string Delimit(this IEnumerable<string> col, string delimiter)
+        {
+            var builder = new StringBuilder();
+
+            foreach (var item in col)
+            {
+                builder.AppendIfNotEmpty(delimiter);
+                builder.Append(item);
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Delimits the specified collection.
+        /// </summary>
+        /// <typeparam name="T">The type of the value item in the KeyValuePair</typeparam>
+        /// <param name="col">The collection.</param>
+        /// <param name="delimiter">The delimiter.</param>
+        /// <param name="keyValueSeparator">The key value separator.</param>
+        /// <returns>
+        /// A delimited string representation of the collection.
+        /// </returns>
+        public static string Delimit<T>(this IEnumerable<KeyValuePair<string, T>> col, string delimiter, string keyValueSeparator)
+        {
+            var builder = new StringBuilder();
+
+            foreach (var item in col)
+            {
+                builder.AppendIfNotEmpty(delimiter);
+                builder.Append(item.Key);
+                builder.Append(keyValueSeparator);
+                builder.Append(item.Value);
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Lists the specified collection.
+        /// </summary>
+        /// <param name="col">The collection.</param>
+        /// <returns>A listed string representation of the collection.</returns>
+        public static string List(this IEnumerable<string> col)
+        {
+            var builder = new StringBuilder();
+
+            foreach (var item in col)
+            {
+                builder.AppendLineIfNotEmpty();
+                builder.Append(item);
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Lists the specified collection.
+        /// </summary>
+        /// <typeparam name="T">The type of the value item in the KeyValuePair</typeparam>
+        /// <param name="col">The collection.</param>
+        /// <param name="keyValueSeparator">The key value separator.</param>
+        /// <returns>
+        /// A listed string representation of the collection.
+        /// </returns>
+        public static string List<T>(this IEnumerable<KeyValuePair<string, T>> col, string keyValueSeparator)
+        {
+            var builder = new StringBuilder();
+
+            foreach (var item in col)
+            {
+                builder.AppendLineIfNotEmpty();
+                builder.Append(item.Key);
+                builder.Append(keyValueSeparator);
+                builder.Append(item.Value);
+            }
+
+            return builder.ToString();
         }
     }
 }
