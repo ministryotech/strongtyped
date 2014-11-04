@@ -40,12 +40,15 @@ And also to StringBuilders...
 
 * **AppendIfEmpty** - Appends to the builder only if it is currently empty.
 * **AppendIfNotEmpty** - Appends to the builder only if it is currently not empty.
+* **AppendLineIfEmpty** - Appends a line to the builder only if it is currently empty.
+* **AppendLineIfNotEmpty** - Appends a line to the builder only if it is currently not empty.
 * **RemoveFromEnd** - Removes a given number of characters from the end.
 * **RemoveFromStart** - Removes a given number of characters from the start.
 
 And to collections...
 
-* **Delimit** - Converts an ICollection of strings into a single delimited string.
+* **Delimit** - Converts an IEnumerable of strings or KeyValuePairs into a single delimited string.
+* **List** - Converts an IEnumerable of strings or KeyValuePairs into a single, line terminator delimited list.
 
 ## WebSession ##
 ### Using Session State in your Application ###
