@@ -1,5 +1,29 @@
-# Ministry.StronglyTyped #
+# Ministry.StrongTyped #
 This project is set up to provide base classes for generating strongly typed access to traditionally simple object or string type stores, such as ASP.Net Session state and the matching interfaces and test fakes to enable simple unit testing scenarios for the same.
+
+## Parameter Checking ##
+As coders we frequently find ourselves writing the same code over and over again to check the validity of passed parameters to a method. Using the CheckParameter static class in the Ministry.StrongTyped library you can replace this...
+```
+#!c#
+if (myParameter == null) throw new ArgumentNullException("myParameter");
+```
+with
+```
+#!c#
+CheckParameter.IsNotNull(myParameter, "myParameter");
+```
+or, for Strings and StringBuilders, this...
+```
+#!c#
+if (myParameter == null) throw new ArgumentNullException("myParameter");
+if (myParameter == String.Empty) throw new ArgumentException("The parameter 'myParameter' cannot be empty", parameterName), myParameter );
+```
+with
+```
+#!c#
+CheckParameter.IsNotNullOrEmpty(myParameter, "myParameter");
+```
+There is also a method for passing in your own criteria matching function.
 
 ## WebSession ##
 ### Using Session State in your Application ###
