@@ -28,20 +28,24 @@ There is also a method for passing in your own criteria matching function.
 ## String Manipulations ##
 The library adds a suite of extension methods to Strings...
 
-* AddSpacesByCasing - Adds spaces between ProperCased words.
-* AddCharactersByCasing - Adds characters between ProperCased words.
-* IsNullOrEmpty - Returns true if the string is null or empty.
-* IsNotNullOrEmpty - Returns true if the string is not null or empty.
-* RemoveFromEnd - Removes a given number of characters from the end of the string.
-* RemoveFromStart - Removes a given number of characters from the start of the string.
-* Split - Converts a delimited string into an array.
+* **AddSpacesByCasing** - Adds spaces between ProperCased words.
+* **AddCharactersByCasing** - Adds characters between ProperCased words.
+* **IsNullOrEmpty** - Returns true if the string is null or empty.
+* **IsNotNullOrEmpty** - Returns true if the string is not null or empty.
+* **RemoveFromEnd** - Removes a given number of characters from the end of the string.
+* **RemoveFromStart** - Removes a given number of characters from the start of the string.
+* **Split** - Converts a delimited string into an array.
 
 And also to StringBuilders...
 
-* AppendIfEmpty - Appends to the builder only if it is currently empty.
-* AppendIfNotEmpty - Appends to the builder only if it is currently not empty.
-* RemoveFromEnd - Removes a given number of characters from the end.
-* RemoveFromStart - Removes a given number of characters from the start.
+* **AppendIfEmpty** - Appends to the builder only if it is currently empty.
+* **AppendIfNotEmpty** - Appends to the builder only if it is currently not empty.
+* **RemoveFromEnd** - Removes a given number of characters from the end.
+* **RemoveFromStart** - Removes a given number of characters from the start.
+
+And to collections...
+
+* **Delimit** - Converts an ICollection of strings into a single delimited string.
 
 ## WebSession ##
 ### Using Session State in your Application ###
