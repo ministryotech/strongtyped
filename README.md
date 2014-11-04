@@ -16,7 +16,7 @@ or, for Strings and StringBuilders, this...
 ```
 #!c#
 if (myParameter == null) throw new ArgumentNullException("myParameter");
-if (myParameter == String.Empty) throw new ArgumentException("The parameter 'myParameter' cannot be empty", parameterName), myParameter );
+if (myParameter == String.Empty) throw new ArgumentException("The parameter 'myParameter' cannot be empty", myParameter );
 ```
 with
 ```
