@@ -17,15 +17,15 @@ using System.Web;
 namespace Ministry.StrongTyped
 {
     /// <summary>
-    /// Wrapper for Session state
+    /// Wrapper for Application state
     /// </summary>
-    public abstract class WebSessionBase : IStateStorage, IWebSession
+    public abstract class ApplicationStateBase : IStateStorage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WebSessionBase"/> class.
+        /// Initializes a new instance of the <see cref="ApplicationStateBase"/> class.
         /// </summary>
         /// <param name="webContext">The web context.</param>
-        protected WebSessionBase(HttpContextBase webContext)
+        protected ApplicationStateBase(HttpContextBase webContext)
         {
             Context = webContext;
         }
@@ -43,7 +43,7 @@ namespace Ministry.StrongTyped
         /// <returns></returns>
         public object GetValue(string key)
         {
-            return Context.Session == null ? null : Context.Session[key];
+            return Context.Application == null ? null : Context.Application[key];
         }
 
         /// <summary>
@@ -54,9 +54,9 @@ namespace Ministry.StrongTyped
         /// <returns></returns>
         public T GetValue<T>(string key)
         {
-            if (Context.Session == null) return default(T);
+            if (Context.Application == null) return default(T);
 
-            return (T)Context.Session[key];
+            return (T)Context.Application[key];
         }
 
         /// <summary>
@@ -67,10 +67,10 @@ namespace Ministry.StrongTyped
         /// <exception cref="System.NullReferenceException">The Session element of the context is null.</exception>
         public void SetValue(string key, object value)
         {
-            if (Context.Session == null)
-                throw new NullReferenceException("The Session element of the context is null.");
+            if (Context.Application == null)
+                throw new NullReferenceException("The Application state element of the context is null.");
 
-            Context.Session[key] = value;
+            Context.Application[key] = value;
         }
 
         /// <summary>
@@ -82,10 +82,10 @@ namespace Ministry.StrongTyped
         /// <exception cref="System.NullReferenceException">The Session element of the context is null.</exception>
         public void SetValue<T>(string key, T value)
         {
-            if (Context.Session == null)
-                throw new NullReferenceException("The Session element of the context is null.");
+            if (Context.Application == null)
+                throw new NullReferenceException("The Application state element of the context is null.");
 
-            Context.Session[key] = value;
+            Context.Application[key] = value;
         }
     }
 }

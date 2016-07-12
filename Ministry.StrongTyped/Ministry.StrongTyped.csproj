@@ -46,11 +46,14 @@
   <ItemGroup>
     <Compile Include="Conversions.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="Fakes\FakeApplicationState.cs" />
     <Compile Include="Fakes\FakeWebSession.cs" />
+    <Compile Include="IStateStorage.cs" />
     <Compile Include="IWebSession.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CheckParameter.cs" />
     <Compile Include="StringHelper.cs" />
+    <Compile Include="ApplicationStateBase.cs" />
     <Compile Include="WebSessionBase.cs" />
   </ItemGroup>
   <ItemGroup>

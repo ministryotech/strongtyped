@@ -11,14 +11,41 @@
 // FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-using System;
-
 namespace Ministry.StrongTyped
 {
     /// <summary>
     /// Wrapper for Session state
     /// </summary>
-    [Obsolete("Included for compatibility - IStateStorage now covers multiple storage forms")]
-    public interface IWebSession : IStateStorage
-    { }
+    public interface IStateStorage
+    {
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
+        object GetValue(string key);
+
+        /// <summary>
+        /// Gets the value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">The key.</param>
+        /// <returns></returns>
+        T GetValue<T>(string key);
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        void SetValue(string key, object value);
+
+        /// <summary>
+        /// Sets the value.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="key">The key.</param>
+        /// <param name="value">The value.</param>
+        void SetValue<T>(string key, T value);
+    }
 }

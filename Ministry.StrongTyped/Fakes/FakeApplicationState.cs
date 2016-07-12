@@ -17,26 +17,26 @@ using System.Linq;
 namespace Ministry.StrongTyped.Fakes
 {
     /// <summary>
-    /// Fake WebSession implementation that stores values in memory.
+    /// Fake Application state implementation that stores values in memory.
     /// </summary>
     /// <remarks>
-    /// This is a useful swap out for a concrete web session. You can inherit a custom version for session storage checking if needed.
+    /// This is a useful swap out for a concrete application state. You can inherit a custom version for session storage checking if needed.
     /// </remarks>
-    public class FakeWebSession : IStateStorage, IWebSession
+    public class FakeApplicationState : IStateStorage
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="FakeWebSession"/> class.
+        /// Initializes a new instance of the <see cref="FakeApplicationState"/> class.
         /// </summary>
-        public FakeWebSession()
+        public FakeApplicationState()
         {
-            InMemorySession = new List<FakeSessionItem>();
+            InMemoryState = new List<FakeStateItem>();
         }
 
         /// <summary>
         /// Gets the in memory session.
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
-        protected List<FakeSessionItem> InMemorySession { get; private set; }
+        protected List<FakeStateItem> InMemoryState { get; private set; }
 
         /// <summary>
         /// Gets the value.
@@ -45,8 +45,8 @@ namespace Ministry.StrongTyped.Fakes
         /// <returns></returns>
         public object GetValue(string key)
         {
-            if (InMemorySession.All(o => o.Key != key)) return null;
-            var item = InMemorySession.FirstOrDefault(o => o.Key == key);
+            if (InMemoryState.All(o => o.Key != key)) return null;
+            var item = InMemoryState.FirstOrDefault(o => o.Key == key);
 
             return item == null ? null : item.Value;
         }
@@ -59,7 +59,7 @@ namespace Ministry.StrongTyped.Fakes
         /// <returns></returns>
         public T GetValue<T>(string key)
         {
-            var item = InMemorySession.FirstOrDefault(o => o.Key == key);
+            var item = InMemoryState.FirstOrDefault(o => o.Key == key);
 
             return item == null ? default(T) : (T)item.Value;
         }
@@ -71,13 +71,13 @@ namespace Ministry.StrongTyped.Fakes
         /// <param name="value">The value.</param>
         public void SetValue(string key, object value)
         {
-            if (InMemorySession.All(o => o.Key != key))
+            if (InMemoryState.All(o => o.Key != key))
             {
-                InMemorySession.Add(new FakeSessionItem(key, value));
+                InMemoryState.Add(new FakeStateItem(key, value));
             }
             else
             {
-                InMemorySession.First(o => o.Key == key).Value = value;
+                InMemoryState.First(o => o.Key == key).Value = value;
             }
         }
 
@@ -89,29 +89,29 @@ namespace Ministry.StrongTyped.Fakes
         /// <param name="value">The value.</param>
         public void SetValue<T>(string key, T value)
         {
-            if (InMemorySession.All(o => o.Key != key))
+            if (InMemoryState.All(o => o.Key != key))
             {
-                InMemorySession.Add(new FakeSessionItem(key, value));
+                InMemoryState.Add(new FakeStateItem(key, value));
             }
             else
             {
-                InMemorySession.First(o => o.Key == key).Value = value;
+                InMemoryState.First(o => o.Key == key).Value = value;
             }
         }
 
         #region | Nested Classes |
 
         /// <summary>
-        /// A Fake Session Item
+        /// A Fake State Item
         /// </summary>
-        protected class FakeSessionItem
+        protected class FakeStateItem
         {
             /// <summary>
-            /// Initializes a new instance of the <see cref="FakeSessionItem"/> class.
+            /// Initializes a new instance of the <see cref="FakeStateItem"/> class.
             /// </summary>
             /// <param name="key">The key.</param>
             /// <param name="value">The value.</param>
-            public FakeSessionItem(string key, object value)
+            public FakeStateItem(string key, object value)
             {
                 Key = key;
                 Value = value;
