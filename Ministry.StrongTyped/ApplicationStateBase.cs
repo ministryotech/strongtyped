@@ -55,6 +55,7 @@ namespace Ministry.StrongTyped
         public T GetValue<T>(string key)
         {
             if (Context.Application == null) return default(T);
+            if (Context.Application[key] == null) return default(T);
 
             return (T)Context.Application[key];
         }
