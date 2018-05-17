@@ -18,7 +18,11 @@ namespace Ministry.StrongTyped
     /// <summary>
     /// Wrapper for Session state
     /// </summary>
-    [Obsolete("Included for compatibility - IStateStorage now covers multiple storage forms")]
     public interface IWebSession : IStateStorage
-    { }
+    {       
+        /// <summary>
+        /// Clears the session state.
+        /// </summary>
+        void Clear();
+    }
 }

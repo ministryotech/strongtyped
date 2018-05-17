@@ -34,7 +34,7 @@ namespace Ministry.StrongTyped
         /// Gets the context.
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
-        protected HttpContextBase Context { get; private set; }
+        protected HttpContextBase Context { get; }
 
         /// <summary>
         /// Gets the value.
@@ -52,13 +52,10 @@ namespace Ministry.StrongTyped
         /// <typeparam name="T">The type of the object to get.</typeparam>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public T GetValue<T>(string key)
-        {
-            if (Context.Application == null) return default(T);
-            if (Context.Application[key] == null) return default(T);
-
-            return (T)Context.Application[key];
-        }
+        public T GetValue<T>(string key) 
+            => Context.Application?[key] == null 
+                ? default(T) 
+                : (T) Context.Application[key];
 
         /// <summary>
         /// Sets the value.

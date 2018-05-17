@@ -11,7 +11,7 @@
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <copyright>Copyright 2014</copyright>
-    <releaseNotes>Replacement for Ministry.Abstracts</releaseNotes>
+    <releaseNotes>Fixed a minor bug in null returns on get from session state.</releaseNotes>
     <tags>Abstract Test UnitTest Wrapper Session Web</tags>
   </metadata>
 </package>

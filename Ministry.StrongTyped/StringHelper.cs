@@ -28,10 +28,7 @@ namespace Ministry.StrongTyped
         /// <param name="value">The string to change.</param>
         /// <returns>The altered string.</returns>
         /// <remarks>As an example TheQuickBrownFox would become The Quick Brown Fox.</remarks>
-        public static string AddSpacesByCasing(this string value)
-        {
-            return value.AddCharactersByCasing(" ");
-        }
+        public static string AddSpacesByCasing(this string value) => value.AddCharactersByCasing(" ");
 
         /// <summary>
         /// Adds characters into a string where capital letters occur.
@@ -60,8 +57,8 @@ namespace Ministry.StrongTyped
         /// <exception cref="System.ArgumentNullException">Either the StringBuilder or value to append are null.</exception>
         public static StringBuilder AppendIfEmpty(this StringBuilder value, string appendValue)
         {
-            if (value == null) throw new ArgumentNullException("value");
-            if (appendValue == null) throw new ArgumentNullException("appendValue");
+            if (value == null) throw new ArgumentNullException(nameof(value));
+            if (appendValue == null) throw new ArgumentNullException(nameof(appendValue));
 
             if (value.Length == 0) value.Append(appendValue);
             return value;

@@ -99,6 +99,8 @@ namespace Ministry.StrongTyped.Fakes
             }
         }
 
+        public void Clear() => InMemorySession.Clear();
+
         #region | Nested Classes |
 
         /// <summary>

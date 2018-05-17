@@ -19,7 +19,7 @@ namespace Ministry.StrongTyped
     /// <summary>
     /// Wrapper for Session state
     /// </summary>
-    public abstract class WebSessionBase : IStateStorage, IWebSession
+    public abstract class WebSessionBase : IWebSession
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="WebSessionBase"/> class.
@@ -34,7 +34,12 @@ namespace Ministry.StrongTyped
         /// Gets the context.
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
-        protected HttpContextBase Context { get; private set; }
+        protected HttpContextBase Context { get; }
+
+        /// <summary>
+        /// Clears the session state.
+        /// </summary>
+        public void Clear() => Context.Session.Clear();
 
         /// <summary>
         /// Gets the value.
@@ -52,12 +57,10 @@ namespace Ministry.StrongTyped
         /// <typeparam name="T">The type of the object to get.</typeparam>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public T GetValue<T>(string key)
-        {
-            if (Context.Session == null) return default(T);
-
-            return (T)Context.Session[key];
-        }
+        public T GetValue<T>(string key) 
+            => Context.Session?[key] == null 
+                ? default(T) 
+                : (T) Context.Session[key];
 
         /// <summary>
         /// Sets the value.
