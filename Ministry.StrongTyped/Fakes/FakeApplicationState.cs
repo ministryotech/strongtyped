@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2014 Minotech Ltd.
+﻿// Copyright (c) 2018 Minotech Ltd.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 // (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -37,6 +37,11 @@ namespace Ministry.StrongTyped.Fakes
         /// </summary>
         // ReSharper disable once MemberCanBePrivate.Global
         protected List<FakeStateItem> InMemoryState { get; private set; }
+
+        /// <summary>
+        /// Clears the state.
+        /// </summary>
+        public void Clear() => InMemoryState.Clear();
 
         /// <summary>
         /// Gets the value.

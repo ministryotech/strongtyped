@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2014 Minotech Ltd.
+﻿// Copyright (c) 2018 Minotech Ltd.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 // (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -12,23 +12,40 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Web;
 
 namespace Ministry.StrongTyped
 {
+    #region | Interface |
+
+    /// <summary>
+    /// Wrapper for Session state
+    /// </summary>
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
+    public interface IApplicationState : IStateStorage
+    { }
+
+    #endregion
+
     /// <summary>
     /// Wrapper for Application state
     /// </summary>
     public abstract class ApplicationStateBase : IStateStorage
     {
+        #region | Constructor |
+
         /// <summary>
         /// Initializes a new instance of the <see cref="ApplicationStateBase"/> class.
         /// </summary>
         /// <param name="webContext">The web context.</param>
+        [SuppressMessage("ReSharper", "UnusedMember.Global")]
         protected ApplicationStateBase(HttpContextBase webContext)
         {
             Context = webContext;
         }
+
+        #endregion
 
         /// <summary>
         /// Gets the context.
@@ -37,14 +54,17 @@ namespace Ministry.StrongTyped
         protected HttpContextBase Context { get; }
 
         /// <summary>
+        /// Clears the state.
+        /// </summary>
+        public void Clear() => Context.Application.Clear();
+
+        /// <summary>
         /// Gets the value.
         /// </summary>
         /// <param name="key">The key.</param>
         /// <returns></returns>
-        public object GetValue(string key)
-        {
-            return Context.Application == null ? null : Context.Application[key];
-        }
+        public object GetValue(string key) 
+            => Context.Application[key];
 
         /// <summary>
         /// Gets the value.
@@ -53,7 +73,7 @@ namespace Ministry.StrongTyped
         /// <param name="key">The key.</param>
         /// <returns></returns>
         public T GetValue<T>(string key) 
-            => Context.Application?[key] == null 
+            => Context.Application[key] == null 
                 ? default(T) 
                 : (T) Context.Application[key];
 

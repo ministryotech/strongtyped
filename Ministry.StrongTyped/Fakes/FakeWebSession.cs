@@ -1,4 +1,4 @@
-﻿// Copyright (c) 2014 Minotech Ltd.
+﻿// Copyright (c) 2018 Minotech Ltd.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files
 // (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge,
@@ -22,7 +22,7 @@ namespace Ministry.StrongTyped.Fakes
     /// <remarks>
     /// This is a useful swap out for a concrete web session. You can inherit a custom version for session storage checking if needed.
     /// </remarks>
-    public class FakeWebSession : IStateStorage, IWebSession
+    public class FakeWebSession : IStateStorage
     {
         /// <summary>
         /// Initializes a new instance of the <see cref="FakeWebSession"/> class.
