@@ -21,6 +21,7 @@ namespace Ministry.StrongTyped
     /// <summary>
     /// Methods for checking the state of parameters
     /// </summary>
+    [Obsolete("Use the Ministry.FluentGuard library instead")]
     public static class CheckParameter
     {
         /// <summary>
