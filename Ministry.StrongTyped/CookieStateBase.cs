@@ -16,6 +16,11 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web;
 using Newtonsoft.Json;
 
+// TODO: Move to Ministry.State Libraries (One Solution)
+// MInistry.State.Abstractions
+// Ministry.State.WebSession
+// Ministry.State.Cookies
+
 namespace Ministry.StrongTyped
 {
     #region | Interface |

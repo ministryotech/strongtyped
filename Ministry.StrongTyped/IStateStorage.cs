@@ -11,10 +11,17 @@
 // FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+// TODO: Move to Ministry.State Libraries (One Solution)
+// MInistry.State.Abstractions
+// Ministry.State.WebSession
+// Ministry.State.Cookies
+
+// TODO: Add ApplicationState Library?
+
 namespace Ministry.StrongTyped
 {
     /// <summary>
-    /// Wrapper for Session state
+    /// Wrapper for a state storage mechanism such as Session state, Application state or Cookie state
     /// </summary>
     public interface IStateStorage
     {

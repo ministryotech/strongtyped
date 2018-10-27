@@ -14,6 +14,14 @@
 using System.Collections.Generic;
 using System.Linq;
 
+// TODO: Move to Ministry.State Libraries (One Solution)
+// MInistry.State.Abstractions
+// Ministry.State.WebSession
+// Ministry.State.Cookies
+
+// TODO: This should become 'InMemoryState' instead of Fake with docs to indicate you can use it as fakes
+// NOTE: The Two Fake State classes are EXACTLY the same!
+
 namespace Ministry.StrongTyped.Fakes
 {
     /// <summary>

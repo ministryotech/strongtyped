@@ -18,6 +18,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 
+// TODO: Separate into Ministry.String Library - Use Ministry as the namespace
+
 namespace Ministry.StrongTyped
 {
     public static class StringHelper

@@ -14,6 +14,13 @@
 using System;
 using System.Globalization;
 
+// TODO: Move to Ministry.Conversions
+
+// Ministry.StrongTyped will become an empty library with a load of references to all of the libraries that
+// the functions are split into.
+// Ministry.StrongTyped should build for Classic ASP.Net MVC and dot net framework ONLY
+// Add README notes to prefer use of independent packages
+
 namespace Ministry.StrongTyped
 {
     /// <summary>
