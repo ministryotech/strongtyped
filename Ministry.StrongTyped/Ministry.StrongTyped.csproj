@@ -34,8 +34,11 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Ministry.FluentGuard, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Ministry.FluentGuard.1.0.1\lib\net40\Ministry.FluentGuard.dll</HintPath>
+    <Reference Include="Ministry.FluentGuard, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ministry.FluentGuard.1.0.2\lib\net40\Ministry.FluentGuard.dll</HintPath>
+    </Reference>
+    <Reference Include="Ministry.String, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ministry.String.1.0.0\lib\net40\Ministry.String.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net40\Newtonsoft.Json.dll</HintPath>
@@ -50,14 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Conversions.cs" />
-    <Compile Include="Enums.cs" />
     <Compile Include="Fakes\FakeApplicationState.cs" />
     <Compile Include="Fakes\FakeWebSession.cs" />
     <Compile Include="IStateStorage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="CheckParameter.cs" />
-    <Compile Include="StringHelper.cs" />
     <Compile Include="ApplicationStateBase.cs" />
     <Compile Include="CookieStateBase.cs" />
     <Compile Include="WebSessionBase.cs" />
