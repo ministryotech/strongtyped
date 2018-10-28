@@ -3,3 +3,5 @@ Ministry.StrongTyped/bin/
 */obj/
 *.suo
 .vs/StrongTyped/v15/Server/sqlite3/*
+*/bin/
+packages/*

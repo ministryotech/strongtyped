@@ -10,8 +10,8 @@
     <projectUrl>https://bitbucket.org/ministryotech/strongtyped</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <copyright>Copyright 2014</copyright>
-    <releaseNotes>DI centric IStateStorage interfaces IWebSession, IApplicationState and ICookieState added. Full support for swapping ot for Cookie storage introduced.</releaseNotes>
+    <copyright>Copyright 2018</copyright>
+    <releaseNotes>Now just a stub for isolated components that replace it.</releaseNotes>
     <tags>Abstract Test UnitTest Wrapper Session Web</tags>
   </metadata>
 </package>

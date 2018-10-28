@@ -1,12 +1,5 @@
 # Ministry.StrongTyped #
-This project is set up to provide base classes for generating strongly typed access to traditionally simple object or string type stores, such as ASP.Net Session state and the matching interfaces and test fakes to enable simple unit testing scenarios for the same.
-
-## WebSession ##
-### Using Session State in your Application ###
-Use a WebSessionBase class. Recommended usage is to inherit from this class in your application and use that class to access session state. You can then swap out your session wrapper with any other implementation of IWebSession to enable testing of components that previously would have been extremely hard to test because of a dependency on session state.
-
-### Faking WebSession ###
-The IWebSession interface provides an in-memory alternative to Session that can be used within your tests to remove a dependency on session state by using the IWebSession interface instead.
+This project used to do many things but now is just a stub package that references a load of smaller packages containing the functionality that was previously in this package to provide an upgrade path.
 
 ## The Ministry of Technology Open Source Products ##
 Welcome to The Ministry of Technology open source products. All open source Ministry of Technology products are distributed under the MIT License for maximum re-usability. Details on more of our products and services can be found on our website at http://www.minotech.co.uk
